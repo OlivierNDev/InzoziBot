@@ -8,7 +8,7 @@ body {
   }
   
   header {
-    background-color: #6c63ff;
+    background-color: #1e4775;
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 140px);
+    height: calc(95vh - 120px);
   }
   
   #chat-container {
@@ -58,7 +58,7 @@ body {
   }
   
   #send-btn {
-    background: #6c63ff;
+    background: #1e4775;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -68,13 +68,13 @@ body {
   }
   
   #send-btn:hover {
-    background: #5851db;
+    background: #1e4775;
   }
   
   footer {
     text-align: center;
     padding: 10px 0;
-    background: #333;
+    background: #172a41;
     color: #fff;
   }
   

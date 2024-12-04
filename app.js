@@ -1,6 +1,7 @@
 const chatBox = document.getElementById('chat-box');
 const userInput = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
+const API_BASE = "http://127.0.0.1:5000/api"; // Backend URL
 
 // Append a message to the chat box
 function appendMessage(sender, text) {
@@ -11,27 +12,30 @@ function appendMessage(sender, text) {
   chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
 }
 
-// Mock chatbot response
-function getBotResponse(userMessage) {
-  // Add simple logic here for demo
-  if (userMessage.toLowerCase().includes('dream')) {
-    return "That's an interesting dream! What goal would you like to set based on it?";
-  }
-  return "I'm here to log your dreams or help you set reminders. Tell me more!";
-}
-
 // Handle user input
-sendBtn.addEventListener('click', () => {
+sendBtn.addEventListener('click', async () => {
   const userMessage = userInput.value.trim();
   if (userMessage) {
     appendMessage('user', userMessage);
     userInput.value = '';
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage = getBotResponse(userMessage);
-      appendMessage('bot', botMessage);
-    }, 500);
+    try {
+      // Send dream to backend and get analysis
+      const response = await fetch(`${API_BASE}/analyze`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dream: userMessage }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        appendMessage('bot', data.analysis);
+      } else {
+        appendMessage('bot', data.error || "Something went wrong.");
+      }
+    } catch (error) {
+      appendMessage('bot', "Unable to connect to the server.");
+    }
   }
 });
 
