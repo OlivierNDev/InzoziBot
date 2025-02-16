@@ -19,7 +19,7 @@ InzoziBot is a personal dream companion inspired by childhood traditions in Rwan
 
 ## **Technologies Used**  
 - **Backend**: Python  
-- **Natural Language Processing (NLP)**: Dialogflow or Rasa  
+- **Natural Language Processing (NLP)**: Dialogflow
 - **Database**: Firebase   
 - **Frontend**: React.js, HTML, CSS  
 
